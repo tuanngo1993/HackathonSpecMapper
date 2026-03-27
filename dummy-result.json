@@ -1,0 +1,204 @@
+{
+  "summary": {
+    "total": 1,
+    "success": 1,
+    "failed": 0
+  },
+  "rows": {
+    "1": {
+      "canonicalProduct": {
+        "sourceRow": {
+          "active": "true",
+          "categories": "019d291300bf71f2bd4abe96770e1046",
+          "cover_media_alt": "",
+          "cover_media_id": "019d2912edf3715ba46bd756df996db7",
+          "cover_media_title": "File #115",
+          "cover_media_url": "http://localhost:8000/media/a.jpg",
+          "description": "Wrong delimiter + boolean text",
+          "id": "019d2913063572ca8094e4fed5f32460",
+          "manufacturer_id": "019d291305e771d28b404dcb27bc53b4",
+          "manufacturer_name": "Weimann, Dickens and Lesch",
+          "name": "Lightweight Linen CareWare",
+          "optionIds": "",
+          "parent_id": "",
+          "price_gross": "435.96",
+          "price_net": "407.43925233645",
+          "product_number": "SW_019d2d263f8170bebf4641bb6beda5b4",
+          "propertyIds": "019d2912ff71729c8536dbf16a0f6b0d",
+          "purchase_prices_gross": "744.45",
+          "purchase_prices_net": "695.7476635514",
+          "sales_channel": "019d28a7c0ff70939b0a956f7cc8c3c0",
+          "stock": "16",
+          "tax_id": "019d28a79e4a7397a18909d6e8f55921",
+          "tax_name": "Reduced rate",
+          "tax_rate": "7"
+        },
+        "id": "019d2913063572ca8094e4fed5f32460",
+        "sku": "SW_019d2d263f8170bebf4641bb6beda5b4",
+        "name": "Lightweight Linen CareWare",
+        "description": "Wrong delimiter + boolean text",
+        "price": 435.96,
+        "currency": "USD",
+        "taxRate": 7,
+        "taxId": "019d28a79e4a7397a18909d6e8f55921",
+        "stock": 16,
+        "active": true,
+        "manufacturer": "Weimann, Dickens and Lesch",
+        "manufacturerId": "019d291305e771d28b404dcb27bc53b4",
+        "salesChannelId": "019d28a7c0ff70939b0a956f7cc8c3c0",
+        "coverMediaId": "019d2912edf3715ba46bd756df996db7",
+        "categories": [
+          "019d291300bf71f2bd4abe96770e1046"
+        ],
+        "imageUrls": [
+          "http://localhost:8000/media/a.jpg"
+        ],
+        "warnings": [
+          "currencyId is missing/empty; currency kept as provided ('USD') but may be ambiguous.",
+          "Description appears low-quality ('Wrong delimiter + boolean text'); left unchanged due to lack of additional factual content.",
+          "imageUrls inferred from cover_media_url (single image)."
+        ]
+      },
+      "mcpProductPreview": {
+        "operation": "create",
+        "name": "Lightweight Linen CareWare",
+        "productNumber": "SW_019d2d263f8170bebf4641bb6beda5b4",
+        "description": "Wrong delimiter + boolean text",
+        "taxRate": 7,
+        "stock": 16,
+        "grossPrice": 435.96,
+        "netPrice": 407.44,
+        "active": true,
+        "salesChannels": [
+          {
+            "name": "Storefront"
+          }
+        ],
+        "categories": [
+          {
+            "path": "019d291300bf71f2bd4abe96770e1046"
+          }
+        ],
+        "media": [
+          {
+            "url": "http://localhost:8000/media/a.jpg",
+            "position": 0,
+            "cover": true
+          }
+        ],
+        "manufacturerName": "Weimann, Dickens and Lesch"
+      },
+      "shopwareSyncPayload": {
+        "id": "019d2913063572ca8094e4fed5f32460",
+        "productNumber": "SW_019d2d263f8170bebf4641bb6beda5b4",
+        "name": "Lightweight Linen CareWare",
+        "description": "Wrong delimiter + boolean text",
+        "active": true,
+        "stock": 16,
+        "taxId": "019d28a79e4a7397a18909d6e8f55921",
+        "manufacturerId": "019d291305e771d28b404dcb27bc53b4",
+        "categories": [
+          {
+            "id": "019d291300bf71f2bd4abe96770e1046"
+          }
+        ],
+        "visibilities": [
+          {
+            "salesChannelId": "019d28a7c0ff70939b0a956f7cc8c3c0",
+            "visibility": 30
+          }
+        ],
+        "media": [
+          {
+            "id": "7c172e494ef7fa611c5a4cb258e5da02",
+            "mediaId": "019d2912edf3715ba46bd756df996db7",
+            "position": 0
+          }
+        ],
+        "coverId": "7c172e494ef7fa611c5a4cb258e5da02"
+      },
+      "previewToken": "v1.ihCMWLMTdBbHCkRYmQLosk2k2LzrLAhH08CQulLOXhU"
+    }
+  },
+  "warningsByRow": {
+    "1": [
+      "currencyId is missing/empty; currency kept as provided ('USD') but may be ambiguous.",
+      "Description appears low-quality ('Wrong delimiter + boolean text'); left unchanged due to lack of additional factual content.",
+      "imageUrls inferred from cover_media_url (single image).",
+      "shopware sync payload is missing currencyId; set currency_id in CSV or SHOPWARE_DEFAULT_CURRENCY_ID"
+    ]
+  },
+  "shopwareSyncRequest": [
+    {
+      "action": "upsert",
+      "entity": "product",
+      "payload": [
+        {
+          "id": "019d2913063572ca8094e4fed5f32460",
+          "productNumber": "SW_019d2d263f8170bebf4641bb6beda5b4",
+          "name": "Lightweight Linen CareWare",
+          "description": "Wrong delimiter + boolean text",
+          "active": true,
+          "stock": 16,
+          "taxId": "019d28a79e4a7397a18909d6e8f55921",
+          "manufacturerId": "019d291305e771d28b404dcb27bc53b4",
+          "categories": [
+            {
+              "id": "019d291300bf71f2bd4abe96770e1046"
+            }
+          ],
+          "visibilities": [
+            {
+              "salesChannelId": "019d28a7c0ff70939b0a956f7cc8c3c0",
+              "visibility": 30
+            }
+          ],
+          "media": [
+            {
+              "id": "7c172e494ef7fa611c5a4cb258e5da02",
+              "mediaId": "019d2912edf3715ba46bd756df996db7",
+              "position": 0
+            }
+          ],
+          "coverId": "7c172e494ef7fa611c5a4cb258e5da02"
+        }
+      ]
+    },
+    {
+      "action": "upsert",
+      "entity": "product",
+      "payload": [
+        {
+          "id": "019d2913063572ca8094e4fed5f32460",
+          "productNumber": "SW_019d2d263f8170bebf4641bb6beda5b4",
+          "name": "Lightweight Linen CareWare",
+          "description": "Wrong delimiter + boolean text",
+          "active": true,
+          "stock": 16,
+          "taxId": "019d28a79e4a7397a18909d6e8f55921",
+          "manufacturerId": "019d291305e771d28b404dcb27bc53b4",
+          "categories": [
+            {
+              "id": "019d291300bf71f2bd4abe96770e1046"
+            }
+          ],
+          "visibilities": [
+            {
+              "salesChannelId": "019d28a7c0ff70939b0a956f7cc8c3c0",
+              "visibility": 30
+            }
+          ],
+          "media": [
+            {
+              "id": "7c172e494ef7fa611c5a4cb258e5da02",
+              "mediaId": "019d2912edf3715ba46bd756df996db7",
+              "position": 0
+            }
+          ],
+          "coverId": "7c172e494ef7fa611c5a4cb258e5da02"
+        }
+      ]
+    }
+  ],
+  "errors": null
+}

@@ -1,0 +1,319 @@
+{% block sw_hackathon_spec_mapper_settings %}
+<sw-page class="sw-hackathon-spec-mapper-settings">
+    <template #smart-bar-header>
+        <h2>
+            {{ $tc('sw-settings.index.title') }}
+            <mt-icon
+                name="regular-chevron-right-xs"
+                size="12px"
+            />
+            {{ $tc('hackathon-spec-mapper.general.mainMenuItemGeneral') }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <mt-button
+            variant="secondary"
+            size="small"
+            :disabled="!hasResults || isFormatting || isApplying"
+            @click="openFormattedPayloadModal"
+        >
+            {{ $tc('hackathon-spec-mapper.actions.reviewFormattedData') }}
+        </mt-button>
+
+        <sw-button-process
+            variant="primary"
+            :is-loading="isApplying"
+            :process-success="isApplySuccessful"
+            :disabled="!hasResults || isFormatting || isApplying"
+            @update:process-success="saveFinish"
+            @click="onApplyResults"
+        >
+            {{ $tc('hackathon-spec-mapper.actions.applyResults') }}
+        </sw-button-process>
+    </template>
+
+    <template #content>
+        <sw-card-view>
+            <mt-banner
+                class="sw-hackathon-spec-mapper-settings__intro"
+                variant="info"
+            >
+                {{ $tc('hackathon-spec-mapper.intro.copy') }}
+            </mt-banner>
+
+            <sw-card :title="$tc('hackathon-spec-mapper.cards.importTitle')">
+                <div class="sw-hackathon-spec-mapper-settings__import-card">
+                    <p class="sw-hackathon-spec-mapper-settings__hint">
+                        {{ $tc('hackathon-spec-mapper.import.hint') }}
+                    </p>
+
+                    <sw-file-input
+                        v-model:value="selectedFile"
+                        :label="$tc('hackathon-spec-mapper.import.fileLabel')"
+                        :allowed-mime-types="allowedMimeTypes"
+                        :max-file-size="maxFileSize"
+                        @update:value="onFileChanged"
+                    />
+
+                    <div class="sw-hackathon-spec-mapper-settings__import-actions">
+                        <mt-button
+                            variant="primary"
+                            size="small"
+                            :is-loading="isFormatting"
+                            :disabled="!selectedFile || isFormatting || isApplying"
+                            @click="onFormatCsv"
+                        >
+                            {{ $tc('hackathon-spec-mapper.actions.formatCsv') }}
+                        </mt-button>
+
+                        <mt-button
+                            variant="secondary"
+                            size="small"
+                            :disabled="!selectedFile || isFormatting"
+                            @click="selectedFile = null; onFileChanged()"
+                        >
+                            {{ $tc('hackathon-spec-mapper.actions.resetSelection') }}
+                        </mt-button>
+                    </div>
+
+                    <div
+                        v-if="isFormatting || progressValue > 0"
+                        class="sw-hackathon-spec-mapper-settings__progress"
+                    >
+                        <div class="sw-hackathon-spec-mapper-settings__progress-headline">
+                            <span>{{ $tc('hackathon-spec-mapper.progress.label') }}</span>
+                            <strong>{{ progressValue }}%</strong>
+                        </div>
+
+                        <sw-progress-bar
+                            :value="progressValue"
+                            :max-value="100"
+                        />
+                    </div>
+
+                    <mt-banner
+                        v-if="formatterTodo"
+                        class="sw-hackathon-spec-mapper-settings__todo-banner"
+                        variant="attention"
+                    >
+                        {{ formatterTodo }}
+                    </mt-banner>
+                </div>
+            </sw-card>
+
+            <sw-card :title="$tc('hackathon-spec-mapper.cards.reviewTitle')">
+                <template v-if="hasResults">
+                    <mt-banner
+                        v-if="isShowingDemoData"
+                        class="sw-hackathon-spec-mapper-settings__warning"
+                        variant="info"
+                    >
+                        {{ $tc('hackathon-spec-mapper.review.demoDataHint') }}
+                    </mt-banner>
+
+                    <div class="sw-hackathon-spec-mapper-settings__summary">
+                        <sw-label
+                            variant="success"
+                            appearance="pill"
+                            size="small"
+                        >
+                            {{ $tc('hackathon-spec-mapper.summary.approved', approvedCount, { count: approvedCount }) }}
+                        </sw-label>
+
+                        <sw-label
+                            variant="warning"
+                            appearance="pill"
+                            size="small"
+                        >
+                            {{ $tc('hackathon-spec-mapper.summary.needsReview', reviewCount, { count: reviewCount }) }}
+                        </sw-label>
+
+                        <sw-label
+                            variant="neutral"
+                            appearance="pill"
+                            size="small"
+                        >
+                            {{ $tc('hackathon-spec-mapper.summary.ignored', ignoredCount, { count: ignoredCount }) }}
+                        </sw-label>
+                    </div>
+
+                    <p class="sw-hackathon-spec-mapper-settings__table-hint">
+                        {{ $tc('hackathon-spec-mapper.review.tableHint') }}
+                    </p>
+
+                    <div
+                        v-if="fileMeta"
+                        class="sw-hackathon-spec-mapper-settings__meta"
+                    >
+                        <span>
+                            {{ $tc('hackathon-spec-mapper.meta.fileName') }}: <strong>{{ fileMeta.fileName }}</strong>
+                        </span>
+                        <span>
+                            {{ $tc('hackathon-spec-mapper.meta.delimiter') }}: <strong>{{ fileMeta.delimiter }}</strong>
+                        </span>
+                        <span>
+                            {{ $tc('hackathon-spec-mapper.meta.headers') }}: <strong>{{ fileMeta.headers.length }}</strong>
+                        </span>
+                    </div>
+
+                    <mt-banner
+                        v-for="warning in warnings"
+                        :key="warning"
+                        class="sw-hackathon-spec-mapper-settings__warning"
+                        variant="attention"
+                    >
+                        {{ warning }}
+                    </mt-banner>
+
+                    <!-- TODO Codemod: This component need to be manually replaced with mt-data-table -->
+                    <sw-data-grid
+                        identifier="sw-hackathon-spec-mapper-settings-products-grid"
+                        :columns="productColumns"
+                        :data-source="productSummaryRows"
+                        :show-selection="false"
+                        rows-clickable
+                        :show-actions="false"
+                        plain-appearance
+                        @row-click="openProductDetails"
+                    >
+                        <template #column-changedFields="{ item }">
+                            <div class="sw-hackathon-spec-mapper-settings__field-tags">
+                                <sw-label
+                                    v-for="field in item.changedFields"
+                                    :key="`${item.productNumber}-${field}`"
+                                    class="sw-hackathon-spec-mapper-settings__field-tag"
+                                    variant="primary"
+                                    appearance="pill"
+                                    size="small"
+                                >
+                                    {{ field }}
+                                </sw-label>
+
+                                <sw-label
+                                    v-if="item.changedFields.length === 0"
+                                    variant="neutral"
+                                    appearance="pill"
+                                    size="small"
+                                >
+                                    {{ $tc('hackathon-spec-mapper.grid.noChangedFields') }}
+                                </sw-label>
+                            </div>
+                        </template>
+                    </sw-data-grid>
+                </template>
+
+                <sw-empty-state
+                    v-else
+                    :absolute="false"
+                    :title="$tc('hackathon-spec-mapper.empty.title')"
+                    :subline="$tc('hackathon-spec-mapper.empty.subline')"
+                />
+            </sw-card>
+
+            <mt-banner
+                v-if="applyResult?.todo"
+                class="sw-hackathon-spec-mapper-settings__todo-banner"
+                variant="attention"
+            >
+                {{ applyResult.todo }}
+            </mt-banner>
+
+            <sw-modal
+                v-if="showProductDetailsModal && selectedProductComparison"
+                :title="`${selectedProductComparison.productName} (${selectedProductComparison.productNumber})`"
+                size="large"
+                @modal-close="closeProductDetails"
+            >
+                <div class="sw-hackathon-spec-mapper-settings__details-layout">
+                    <p class="sw-hackathon-spec-mapper-settings__table-hint">
+                        {{ $tc('hackathon-spec-mapper.review.detailsTableHint') }}
+                    </p>
+
+                    <div
+                        v-if="isLoadingCurrentProduct"
+                        class="sw-hackathon-spec-mapper-settings__details-loader"
+                    >
+                        <sw-loader />
+                    </div>
+
+                    <mt-banner
+                        v-if="currentProductLoadError"
+                        variant="attention"
+                    >
+                        {{ currentProductLoadError }}
+                    </mt-banner>
+
+                    <!-- TODO Codemod: This component need to be manually replaced with mt-data-table -->
+                    <sw-data-grid
+                        identifier="sw-hackathon-spec-mapper-settings-product-details-grid"
+                        :columns="detailColumns"
+                        :data-source="selectedProductDetailRows"
+                        :show-selection="false"
+                        :show-actions="false"
+                        plain-appearance
+                    >
+                        <template #column-currentValue="{ item }">
+                            <div class="sw-hackathon-spec-mapper-settings__value-cell sw-hackathon-spec-mapper-settings__value-cell--old">
+                                {{ item.currentValue }}
+                            </div>
+                        </template>
+
+                        <template #column-newValue="{ item }">
+                            <div class="sw-hackathon-spec-mapper-settings__value-cell sw-hackathon-spec-mapper-settings__value-cell--new">
+                                {{ item.newValue }}
+                            </div>
+                        </template>
+                    </sw-data-grid>
+                </div>
+
+                <template #modal-footer>
+                    <mt-button
+                        variant="secondary"
+                        size="small"
+                        @click="closeProductDetails"
+                    >
+                        {{ $tc('global.default.close') }}
+                    </mt-button>
+                </template>
+            </sw-modal>
+
+            <sw-modal
+                v-if="showFormattedPayloadModal"
+                :title="$tc('hackathon-spec-mapper.modal.title')"
+                size="large"
+                @modal-close="closeFormattedPayloadModal"
+            >
+                <mt-banner variant="info">
+                    {{ $tc('hackathon-spec-mapper.modal.hint') }}
+                </mt-banner>
+
+                <mt-textarea
+                    v-model="formattedPayloadText"
+                    class="sw-hackathon-spec-mapper-settings__payload-textarea"
+                    :label="$tc('hackathon-spec-mapper.modal.textareaLabel')"
+                    rows="18"
+                />
+
+                <template #modal-footer>
+                    <mt-button
+                        variant="secondary"
+                        size="small"
+                        @click="closeFormattedPayloadModal"
+                    >
+                        {{ $tc('global.default.cancel') }}
+                    </mt-button>
+
+                    <mt-button
+                        variant="primary"
+                        size="small"
+                        @click="applyFormattedPayloadChanges"
+                    >
+                        {{ $tc('hackathon-spec-mapper.actions.applyPreviewChanges') }}
+                    </mt-button>
+                </template>
+            </sw-modal>
+        </sw-card-view>
+    </template>
+</sw-page>
+{% endblock %}

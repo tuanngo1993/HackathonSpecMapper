@@ -1,0 +1,95 @@
+{
+    "hackathon-spec-mapper": {
+        "general": {
+            "mainMenuItemGeneral": "Hackathon Spec Mapper",
+            "description": "Upload CSV product data, format it, review it, and prepare the results for apply."
+        },
+        "intro": {
+            "copy": "This first administration version focuses on UI and UX. The formatting and apply steps already call plugin APIs, but the real AI mapping and DAL persistence are still marked as TODO."
+        },
+        "cards": {
+            "importTitle": "Import CSV and format the result",
+            "reviewTitle": "Review the formatted result"
+        },
+        "review": {
+            "demoDataHint": "Demo comparison data is displayed here by default. Upload and format a CSV file to replace it with a fresh result.",
+            "tableHint": "This table shows one row per product. Click a row to open the detail modal with the old version and new version.",
+            "detailsTableTitle": "Property details",
+            "detailsTableHint": "This detail view keeps the comparison simple: one row per field with the current value and the proposed value."
+        },
+        "import": {
+            "hint": "Upload a CSV file, send it to the formatting API, track progress, then review the suggested result before applying it.",
+            "fileLabel": "CSV file"
+        },
+        "progress": {
+            "label": "Formatting progress"
+        },
+        "summary": {
+            "approved": "{count} approved",
+            "needsReview": "{count} needs review",
+            "ignored": "{count} ignored"
+        },
+        "comparison": {
+            "oldVersion": "Old version",
+            "newVersion": "New version"
+        },
+        "meta": {
+            "fileName": "File",
+            "delimiter": "Delimiter",
+            "headers": "Headers"
+        },
+        "grid": {
+            "productNumber": "Product number",
+            "productName": "Product name",
+            "changedFields": "Update fields",
+            "noChangedFields": "No changes",
+            "field": "Field",
+            "property": "Property",
+            "totalProperties": "Properties",
+            "changedProperties": "Changed",
+            "approvedCount": "Approved",
+            "needsReviewCount": "Needs review",
+            "ignoredCount": "Ignored",
+            "overallStatus": "Overall status",
+            "sourceColumn": "Source column",
+            "suggestedProperty": "Suggested property",
+            "currentValue": "Current",
+            "proposedValue": "Proposed",
+            "action": "Action",
+            "confidence": "Confidence",
+            "status": "Status",
+            "reviewNote": "Review note",
+            "noReviewNote": "No review note"
+        },
+        "modal": {
+            "title": "Review formatted payload",
+            "hint": "Use this modal to double-check or manually rework the formatted payload before the final apply step.",
+            "textareaLabel": "Formatted payload"
+        },
+        "actions": {
+            "formatCsv": "Upload and format",
+            "resetSelection": "Reset selection",
+            "reviewFormattedData": "Review formatted data",
+            "applyResults": "Submit and apply",
+            "applyPreviewChanges": "Use edited payload",
+            "viewDetails": "View details",
+            "markApproved": "Mark as approved",
+            "markNeedsReview": "Mark as needs review",
+            "markIgnored": "Ignore row"
+        },
+        "empty": {
+            "title": "No formatted result yet",
+            "subline": "Upload a CSV file and run the formatter to populate the review table."
+        },
+        "messages": {
+            "selectCsvFirst": "Select a CSV file before starting the formatter.",
+            "formatSuccess": "Formatted {count} rows for review.",
+            "applySuccess": "Submitted {count} approved rows to the apply API.",
+            "previewUpdated": "The review table was updated from the edited payload.",
+            "fileReadError": "The selected file could not be read.",
+            "currentProductNotFound": "The current product could not be found in Shopware. Showing preview values instead.",
+            "currentProductLoadFailed": "The current product could not be loaded from Shopware. Showing preview values instead.",
+            "genericError": "Something went wrong while processing the request."
+        }
+    }
+}

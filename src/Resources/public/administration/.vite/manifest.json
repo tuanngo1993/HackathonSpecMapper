@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/hackathon-spec-mapper-B4QN99dV.js",
+    "name": "hackathon-spec-mapper",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/hackathon-spec-mapper-uZkhyRnD.css"
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+    "hackathon-spec-mapper": {
+        "general": {
+            "mainMenuItemGeneral": "Hackathon Spec Mapper",
+            "description": "CSV-Produktdaten hochladen, formatieren, pruefen und zum Anwenden vorbereiten."
+        },
+        "intro": {
+            "copy": "Diese erste Administrationsversion konzentriert sich auf UI und UX. Die Schritte fuer Formatierung und Anwenden rufen bereits Plugin-APIs auf, aber das echte AI-Mapping und die DAL-Persistenz sind noch als TODO markiert."
+        },
+        "cards": {
+            "importTitle": "CSV importieren und Ergebnis formatieren",
+            "reviewTitle": "Formatiertes Ergebnis pruefen"
+        },
+        "review": {
+            "demoDataHint": "Hier werden standardmaessig Demo-Vergleichsdaten angezeigt. Eine CSV-Datei hochladen und formatieren, um das Ergebnis zu ersetzen.",
+            "tableHint": "Diese Tabelle zeigt eine Zeile pro Produkt. Ein Klick auf eine Zeile oeffnet das Detail-Modal mit alter und neuer Version.",
+            "detailsTableTitle": "Property-Details",
+            "detailsTableHint": "Diese Detailansicht haelt den Vergleich einfach: eine Zeile pro Feld mit aktuellem Wert und vorgeschlagenem Wert."
+        },
+        "import": {
+            "hint": "Eine CSV-Datei hochladen, an die Formatierungs-API senden, den Fortschritt verfolgen und das vorgeschlagene Ergebnis vor dem Anwenden pruefen.",
+            "fileLabel": "CSV-Datei"
+        },
+        "progress": {
+            "label": "Formatierungsfortschritt"
+        },
+        "summary": {
+            "approved": "{count} bestaetigt",
+            "needsReview": "{count} zur Pruefung",
+            "ignored": "{count} ignoriert"
+        },
+        "comparison": {
+            "oldVersion": "Alte Version",
+            "newVersion": "Neue Version"
+        },
+        "meta": {
+            "fileName": "Datei",
+            "delimiter": "Trennzeichen",
+            "headers": "Spalten"
+        },
+        "grid": {
+            "productNumber": "Produktnummer",
+            "productName": "Produktname",
+            "changedFields": "Update-Felder",
+            "noChangedFields": "Keine Aenderungen",
+            "field": "Feld",
+            "property": "Property",
+            "totalProperties": "Properties",
+            "changedProperties": "Geaendert",
+            "approvedCount": "Bestaetigt",
+            "needsReviewCount": "Pruefen",
+            "ignoredCount": "Ignoriert",
+            "overallStatus": "Gesamtstatus",
+            "sourceColumn": "Quellspalte",
+            "suggestedProperty": "Vorgeschlagene Eigenschaft",
+            "currentValue": "Aktuell",
+            "proposedValue": "Vorgeschlagen",
+            "action": "Aktion",
+            "confidence": "Vertrauen",
+            "status": "Status",
+            "reviewNote": "Hinweis",
+            "noReviewNote": "Kein Hinweis"
+        },
+        "modal": {
+            "title": "Formatiertes Payload pruefen",
+            "hint": "Dieses Modal zeigt das formatierte Payload zur Kontrolle und manuellen Nachbearbeitung vor dem finalen Anwenden.",
+            "textareaLabel": "Formatiertes Payload"
+        },
+        "actions": {
+            "formatCsv": "Hochladen und formatieren",
+            "resetSelection": "Auswahl zuruecksetzen",
+            "reviewFormattedData": "Formatierte Daten pruefen",
+            "applyResults": "Absenden und anwenden",
+            "applyPreviewChanges": "Bearbeitetes Payload uebernehmen",
+            "viewDetails": "Details anzeigen",
+            "markApproved": "Als bestaetigt markieren",
+            "markNeedsReview": "Als pruefen markieren",
+            "markIgnored": "Zeile ignorieren"
+        },
+        "empty": {
+            "title": "Noch kein formatiertes Ergebnis",
+            "subline": "Eine CSV-Datei hochladen und den Formatter starten, um die Pruefungstabelle zu fuellen."
+        },
+        "messages": {
+            "selectCsvFirst": "Vor dem Start zuerst eine CSV-Datei auswaehlen.",
+            "formatSuccess": "{count} Zeilen fuer die Pruefung formatiert.",
+            "applySuccess": "{count} bestaetigte Zeilen an die Apply-API gesendet.",
+            "previewUpdated": "Die Pruefungstabelle wurde mit dem bearbeiteten Payload aktualisiert.",
+            "fileReadError": "Die ausgewaehlte Datei konnte nicht gelesen werden.",
+            "currentProductNotFound": "Das aktuelle Produkt konnte in Shopware nicht gefunden werden. Stattdessen werden Preview-Werte angezeigt.",
+            "currentProductLoadFailed": "Das aktuelle Produkt konnte nicht aus Shopware geladen werden. Stattdessen werden Preview-Werte angezeigt.",
+            "genericError": "Beim Verarbeiten der Anfrage ist ein Fehler aufgetreten."
+        }
+    }
+}

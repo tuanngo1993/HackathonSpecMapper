@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/hackathonspecmapper/administration/",
+  "entryPoints": {
+    "hackathon-spec-mapper": {
+      "css": [
+        "/bundles/hackathonspecmapper/administration/assets/hackathon-spec-mapper-uZkhyRnD.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/hackathonspecmapper/administration/assets/hackathon-spec-mapper-B4QN99dV.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}
